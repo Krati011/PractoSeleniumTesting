@@ -1,16 +1,13 @@
 package com.pages;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import com.parameters.practoPropertyReader;
-
 
 public class practoHomepage extends BasePage{
 	
-	practoPropertyReader reader;
+	
 	
 	@FindBy(xpath = ("//a[text()='Login / Signup']")) WebElement loginButton;
 	@FindBy(id = ("username")) WebElement number;
@@ -21,10 +18,10 @@ public class practoHomepage extends BasePage{
 	public practoHomepage(WebDriver driver) {
 		super(driver);
 		this.driver= driver;
-		this.reader = new practoPropertyReader();
+		
 	}
 	
-///////////for login in the website.
+///////////for login in the website through properties
 	public void login() 
 	{
 		loginButton.click();
@@ -36,15 +33,14 @@ public class practoHomepage extends BasePage{
 		login.click();	
 	}
 	
-///////////////to scroll down to the footer.
+//------to scroll down to the footer.
 	public void scrolldown() {
-		JavascriptExecutor javaxe = (JavascriptExecutor) driver;
 	      javaxe.executeScript("window.scrollBy(0,2500)");
 		
 	}
 	
 	
-/////////////to click on search for hospital in the 'for patient'' module.
+//-------to click on search for hospital in the 'for patient'' module.
 	public void clickSearForHospital() {
 		waitUntilVisibilityOfElement(Searchforhospital);
 		Searchforhospital.click();

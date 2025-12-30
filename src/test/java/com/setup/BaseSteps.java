@@ -6,7 +6,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
- 
+
+import com.parameters.practoPropertyReader;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
  
 public class BaseSteps
@@ -14,6 +16,7 @@ public class BaseSteps
 	public static WebDriver driver;
 	public static EdgeOptions eoptions;
 	public static ChromeOptions coptions;
+	public static practoPropertyReader reader;
 	
 	public static WebDriver chromedriver()
 	{
@@ -25,9 +28,10 @@ public class BaseSteps
 		coptions.addArguments("disable-notifications");
 		coptions.addArguments("disable-popup-blocking");
 		coptions.addArguments("deny-permission-prompts");
-		
+		reader  = new practoPropertyReader();
 		driver = new ChromeDriver(coptions);
-		driver.get("https://www.practo.com/");
+		String url = reader.get("url.value");
+		driver.get(url);
 		return driver;
 	}
 	
@@ -41,9 +45,10 @@ public class BaseSteps
 		eoptions.addArguments("disable-notifications");
 		eoptions.addArguments("disable-popup-blocking");
 		eoptions.addArguments("deny-permission-prompts");
-		
+		reader  = new practoPropertyReader();
 		driver = new EdgeDriver(eoptions);
-		driver.get("https://www.practo.com/");
+		String url = reader.get("url.value");
+		driver.get(url);
 		return driver;
 	}
 

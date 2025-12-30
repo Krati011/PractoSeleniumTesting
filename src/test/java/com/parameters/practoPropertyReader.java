@@ -11,7 +11,7 @@ public class practoPropertyReader {
      try (FileInputStream fis = new FileInputStream("src\\test\\resource\\propertyData\\practoData.properties")) {
          props.load(fis);
      } catch (IOException e) {
-         throw new RuntimeException("Unable to load makemytrip.properties", e);
+         throw new RuntimeException("Unable to load practo.properties", e);
      }
  }
 

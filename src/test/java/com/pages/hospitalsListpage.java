@@ -1,78 +1,122 @@
 package com.pages;
 
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
+import java.awt.event.KeyEvent;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 import com.parameters.practoPropertyReader;
 
 public class hospitalsListpage extends BasePage{
 	
-	practoPropertyReader reader;
 	
 	public hospitalsListpage(WebDriver driver) {
 		
 		super(driver);
 		this.driver = driver;
-		reader  = new practoPropertyReader();
 		
 	}
 	
 	
 	@FindBy(xpath =("//input[@placeholder='Search location']")) WebElement locationInput;
 	@FindBy(xpath = ("//div[text()='Bangalore']")) WebElement location;
-	@FindBy(xpath=("//h2[@class='line-1' and @title='Manipal Hospitals']")) WebElement hospital;
+	@FindBy(xpath=("//h2[@class='line-1' and @title='Manipal Hospitals']")) WebElement hospital1;
+	@FindBy(linkText = "Koshys Hospital") WebElement hospital2;
+	@FindBy(partialLinkText = "Manipal Hospital Varthur") WebElement hospital3;
 	@FindBy(css= ("input[placeholder='Search doctors, clinics, hospitals, etc.']")) WebElement inputSepcialty;
-
+	@FindBy(xpath =("//div[@data-qa-id='omni-suggestion-main' and text()='Eye Hospital']"))WebElement specialty;
 
 	
-///////// To change the input location.
+	
 	public void inputLocation()  
 	{
 		waitUntilVisibilityOfElement(locationInput);
-		locationInput.clear();
-		locationInput.sendKeys(reader.get("location.value"));
+		locationInput.click();
+		robot.keyPress(KeyEvent.VK_CONTROL);
+    	robot.keyPress(KeyEvent.VK_A);
+    	robot.keyRelease(KeyEvent.VK_A);
+    	robot.keyRelease(KeyEvent.VK_CONTROL);
+ 
+    	robot.keyPress(KeyEvent.VK_DELETE);
+    	robot.keyRelease(KeyEvent.VK_DELETE);
+ 
+		locationInput.sendKeys(reader.get("location.value"));   //Enter the location through property reader
+		
 		waitUntilVisibilityOfElement(location);
+		String parent= driver.getCurrentUrl();     //to get the current URL and store it in parent
 		location.click();
+		
+		//to let the URL load and move forward when it changes.
+		while(true) {
+			if(!(parent.equals(driver.getCurrentUrl()))) {  //to check if the URL is changing. When it change then move forward
+				break;
+			}
+		}
+		
 	}
 
-////////To scrolldown to see the hospital name.
+//------------------------------------------------for test case 1-----------------------------------
+	
 	public void scrollInHospitalList() 
 	{
-		waitUntilVisibilityOfElement(hospital);
-		JavascriptExecutor javaxe = (JavascriptExecutor) driver;
-	    javaxe.executeScript("window.scrollBy(0,400)");
+		waitUntilVisibilityOfElement(hospital1);
+	    javaxe.executeScript("window.scrollBy(0,400)"); // scroll in front of hospital name.
 	}
 	
-////////To select the hospital name we click on the name
-	public void selectHospital() 
+
+	public void selectHospital1() 
 	{
-		hospital.click();
-		System.out.println(hospital.getText());
+		hospital1.click();
+		System.out.println(hospital1.getText()); // click on the hospital name 
 		
 	}
 	
-/////////To return the string so that we can use that in assert.
+
 	public String hospitalNameInList() 
 	{
-	        return hospital.getText();
+	        return hospital1.getText();  // returns the hospital name that is clicked
 	        
 	 }
 	
-//-------------------for test case 4--------------------------
-	public void inputSpecialty() throws InterruptedException {
-
-		inputSepcialty.clear();
-		inputSepcialty.sendKeys("General Physician");
-		Thread.sleep(2000);
-		action.sendKeys(Keys.ARROW_DOWN).build().perform();
-		action.sendKeys(Keys.ENTER).build().perform();
+//--------------------------------------------For testcase 2----------------------------------------------
+	public void selectHospital2() 
+	{
+		hospital2.click();
+		System.out.println(hospital2.getText()); // click on the hospital name 
 		
 	}
-
+	
+	
+//	------------------------------------------For test case 3--------------------------------------------
+	public void selectHospital3() 
+	{
+		hospital3.click();
+		System.out.println(hospital3.getText()); // click on the hospital name 
+		
+	}
+//--------------------------------------------For test case 4-----------------------------------------------
+	public void inputSpecialty() 
+	{
+		waitUntilVisibilityOfElement(inputSepcialty);
+		
+		inputSepcialty.click();
+		
+		robot.keyPress(KeyEvent.VK_CONTROL);
+    	robot.keyPress(KeyEvent.VK_A);
+    	robot.keyRelease(KeyEvent.VK_A);
+    	robot.keyRelease(KeyEvent.VK_CONTROL);
+ 
+    	robot.keyPress(KeyEvent.VK_DELETE);
+    	robot.keyRelease(KeyEvent.VK_DELETE);
+    	
+		inputSepcialty.sendKeys(reader.get("specialty.value")); // input the specialty through property reader.
+	
+		waitUntilElementToBeClickable(specialty);
+		specialty.click();							  //click the specialty
+	}
+	
+	
 	
 	
 	
