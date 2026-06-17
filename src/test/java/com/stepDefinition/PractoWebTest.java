@@ -39,7 +39,7 @@ public class PractoWebTest {
 	
 	
 	
-//-------------------BACKGROUND-----------------------------
+//------------------------------------BACKGROUND-----------------------------
 	@Given("User is on the Homepage of Practo Web after successful login.")
 	public void user_is_on_the_homepage_of_practo_web_after_successful_login() 
 	{
@@ -281,7 +281,7 @@ public class PractoWebTest {
 	@And("the user select a doctor from the list")
 	public void the_user_select_a_doctor_from_the_list() 
 	{
-	    doctorList.SelectDoctor2();
+	    doctorList.SelectDoctor1();
 	    doctorList.getwindow();
 	}
 	
@@ -360,7 +360,7 @@ public class PractoWebTest {
 	@And("the user select the doctor from the list")
 	public void the_user_select_the_doctor_from_the_list() 
 	{
-		doctorList.SelectDoctor1();
+		doctorList.SelectDoctor2();
 	    doctorList.getwindow();
 	}
 	

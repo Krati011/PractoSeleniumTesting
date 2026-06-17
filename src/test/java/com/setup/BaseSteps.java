@@ -51,9 +51,29 @@ public class BaseSteps
 		driver.get(url);
 		return driver;
 	}
-
-	public static void tearDown() {
-		// TODO Auto-generated method stub
-		
-	}
+	
+	public static WebDriver getDriver()
+	 
+	{    
+		 String browser = reader.get("url.value");
+ 
+         if (browser.equalsIgnoreCase("chrome"))
+         {
+ 
+            return chromedriver();
+         }
+ 
+         else if (browser.equalsIgnoreCase("edge") )
+         {
+ 
+            return edgedriver();
+         }
+         else
+         {   
+        	 System.out.println("[BaseSteps] Unknown browser: " + browser );
+ 
+        	 return edgedriver();
+         }
+	}	
+ 
 }

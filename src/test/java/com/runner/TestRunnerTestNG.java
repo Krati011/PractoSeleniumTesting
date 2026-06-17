@@ -7,7 +7,7 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(features ="src\\test\\resource\\Features\\PractoHospital.feature",
 glue = "com.stepDefinition",
 //plugin = {"pretty"},
-tags="@testcase5",
+//tags="@testcase6",
 plugin = {"pretty",
 		"pretty:target/pretty.txt",
 		"html: target/CucumberReport/Cucumber.html",

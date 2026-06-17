@@ -39,10 +39,9 @@ public class BasePage {
 		} catch (AWTException e) {
 			e.printStackTrace();
 		}
-		
 		this.reader = new practoPropertyReader();
 		javaxe=(JavascriptExecutor) driver;               //typecasting driver in js
-		
+
 		PageFactory.initElements(driver, this);
 	}
 

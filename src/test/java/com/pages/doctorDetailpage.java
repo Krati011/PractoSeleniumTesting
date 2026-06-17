@@ -16,7 +16,7 @@ public class doctorDetailpage extends BasePage{
 	
 	@FindBy(css= "button[data-qa-id='book_button']") WebElement bookappointmentButton;
 	@FindBy(xpath = "//div[@class='pure-u-1-3 c-day-label c-day-label--selected']/child::div[2]/child::span") WebElement dateSelector;
-	@FindBy(xpath="//div[@class='c-day-session__slot ']/child::span[text()='05:30 PM']") WebElement slotStatus;
+	@FindBy(xpath="//div[@class='c-day-session__slot ']/child::span[text()='05:45 PM']") WebElement slotStatus;
 	@FindBy(xpath = "//i[@class='icon-ic_next_cheveron c-slots-header__next-btn ']")WebElement nextArrow;
 	@FindBy(partialLinkText = "Share") WebElement shareYourStory;
 
@@ -56,7 +56,7 @@ public class doctorDetailpage extends BasePage{
 	
 	public void clickOnShareStory() 
 	{
-		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(7));     //waiting for the page to load through static wait
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));     //waiting for the page to load through static wait
 		
 		javaxe.executeScript("window.scrollBy(0,100)");
 		

@@ -24,7 +24,7 @@ public class doctorsListpage extends BasePage
 	@FindBy(xpath = "//div[@data-qa-id='doctor_experience']/child::div") List<WebElement> doctorExperience;
 	@FindBy(xpath = "//div[@class=\"c-filter__box u-pos-rel c-dropdown\"]/child::span/child::span[normalize-space()='10+ Years of experience']") WebElement filteredExperience;
 	@FindBy(linkText = "Dr. Adarsh S Naik" ) WebElement clickDoctor1;
-	@FindBy(linkText = "Dr. Puttaswamy P" ) WebElement clickDoctor2;
+	@FindBy(linkText = "Dr. Veena Prabhu" ) WebElement clickDoctor2;
 	
 //--------------------------------------------For Testcase 4----------------------------------
 	public void experienceFilter() 
@@ -50,6 +50,7 @@ public class doctorsListpage extends BasePage
 	{
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(3));
 	      javaxe.executeScript("window.scrollBy(0,200)");
+	      
 	}
 	
 
@@ -79,8 +80,10 @@ public class doctorsListpage extends BasePage
 //----------------------------------For Testcase 5---------------------------------------
 	public void SelectDoctor1() 
 	{
-//	      javaxe.executeScript("window.scrollBy(0,200)");
+//	      javaxe.executeScript("window.scrollBy(0,500)");
+		javaxe.executeScript("arguments[0].scrollIntoView({block: 'center'});", clickDoctor1);
 		waitUntilElementToBeClickable(clickDoctor1);
+//		
 		clickDoctor1.click();
 	}
 	
@@ -88,7 +91,8 @@ public class doctorsListpage extends BasePage
 	
 	public void SelectDoctor2() 
 	{
-	      javaxe.executeScript("window.scrollBy(0,200)");
+//	      javaxe.executeScript("window.scrollBy(0,200)");
+		javaxe.executeScript("arguments[0].scrollIntoView({block: 'center'});", clickDoctor2);
 		waitUntilElementToBeClickable(clickDoctor2);
 		clickDoctor2.click();
 	}
